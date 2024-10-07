@@ -1,0 +1,40 @@
+/* Open Sidebery's settings, go to "Styles Editor" and paste this in */
+#root.root {--tabs-border-radius: 10px;}
+#root.root {--tabs-margin: 4px;}
+#root.root {--tabs-activated-bg: #44475a;}
+
+#root.root {--frame-bg: #191b1c;}
+#root.root {--toolbar-bg: #191b1c;}
+
+#root.root {--tabs-font: 1rem MartianMono NF, Monospace;}
+#root.root {--ctx-menu-font: 1rem Monospace;}
+
+#root {
+  --tabs-height: 36px !important;
+  --tabs-title-padding: 8px;
+  --tabs-font-size: 12px;
+  --tabs-title-lines: 2;
+}
+
+.Tab .t-box {
+  align-items: center;
+  max-height: calc(var(--tabs-height) - var(--tabs-title-padding));
+  overflow: hidden;
+}
+
+.Tab .title {
+  font-size: var(--tabs-font-size);
+  white-space: pre-wrap;
+  line-height: calc((var(--tabs-height) - var(--tabs-title-padding)) / var(--tabs-title-lines));
+}
+
+/* Sidebery Settings 
+
+- Show mark on unread tabs: On
+- Show new tab buttons: Off
+- Tabs tree structure: On
+- Show marks to indicate tabs sub-tree levels: On
+- Colorize tabs: On
+- Generate color from: Domain
+
+*/
