@@ -1,0 +1,585 @@
+/* Global variables */
+:root {
+  /* Colors used for themeing */
+  --even-darker-grey: #191b1c;
+  --dracula-dark-grey: #282a36;
+  --dracula-light-grey: #44475a;
+  --dracula-white: #f8f8f2;
+  --dracula-dark-blue: #6272a4;
+  --dracula-cyan: #8be9fd;
+  --dracula-green: #50fa7b;
+  --dracula-orange: #ffb86c;
+  --dracula-pink: #ff79c6;
+  --dracula-purple: #bd93f9;
+  --dracula-red: #ff5555;
+  --dracula-yellow: #f1fa8c;
+
+  --red: #f38ba8;
+  --green: #a6e3a1;
+  --yellow: #f9e2af;
+  --blue: #89b4fa;
+  --purple: #cba6f7;
+  --pink: #f5c2e7;
+  
+  --background: #1e1e2e;
+
+  /* Actual variables used in the elements. Easier to swap out at a high level with this method */
+  --normal-border: var(--dracula-light-grey);
+  --sidebar-border-hover: var(--dracula-pink);
+  --main-border-hover: var(--dracula-cyan);
+  --findbar-border-hover: var(--dracula-yellow);
+  --nav-toolbox-border-hover: var(--dracula-purple);
+  --inner-background: var(--even-darker-grey);
+
+  --minimize-color: var(--dracula-yellow);
+  --maximize-color: var(--dracula-green);
+  --close-color: var(--dracula-red);
+
+  /* "Functional" variables */
+  --tab-border-radius: 3px !important;
+  --NavbarWidth: 2;
+  --TabsHeight: 36;
+  --TabsBorder: 8;
+  --NavbarHeightSmall: calc(var(--TabsHeight) + var(--TabsBorder));
+
+  /* This is the bar around the URL bar and Ctrl+F bar when it's active */
+  --toolbar-field-focus-border-color: transparent !important;
+}
+
+/* Default font of everything. Can be overridden per website's CSS */
+* {
+  font-family: "MartianMono NF", monospace;
+}
+
+/* Background of Firefox itself. This is the color that shows up outside of/between the borders */
+body {
+  background-color: var(--dracula-dark-grey) !important;
+}
+
+/* Removes all of the various splitters */
+#sidebar-header,
+#sidebar-splitter,
+.devtools-side-splitter,
+.devtools-horizontal-splitter {
+  display: none !important;
+}
+
+/*********************/
+/* MAIN BROWSER AREA */
+
+/* Handles the area that displays the webpage content */
+#main-window #appcontent browser {
+  border-radius: 10px !important;
+  margin: 5px 5px 5px 0px !important;
+  border: 3px solid var(--normal-border);
+  transition: border 0.3s ease;
+  clip-path: circle(80%) !important;
+}
+
+/* Border color on hover */
+#main-window #appcontent browser:hover {
+  border: 3px solid var(--main-border-hover);
+}
+
+/*******************/
+/* MIN, MAX, CLOSE */
+
+/* Overall appearance attributes */
+#TabsToolbar .titlebar-button {
+  border-radius: 5px !important;
+  appearance: none !important;
+  margin: 6px 6px 6px 0px !important;
+  padding: 7px 9px !important;
+}
+
+/* Minimize button */
+#TabsToolbar .titlebar-min {
+  color: var(--minimize-color) !important;
+}
+
+#TabsToolbar .titlebar-min:hover {
+  color: var(--inner-background) !important;
+  background-color: var(--minimize-color) !important;
+}
+
+/* Max/Restore button */
+#TabsToolbar .titlebar-max,
+#TabsToolbar .titlebar-restore {
+  color: var(--maximize-color) !important;
+}
+
+#TabsToolbar .titlebar-max:hover,
+#TabsToolbar .titlebar-restore:hover {
+  color: var(--inner-background) !important;
+  background-color: var(--maximize-color) !important;
+}
+
+/* Close button */
+/* Uses stroke instead of just color for the X, for some reason */
+#TabsToolbar .titlebar-close {
+  stroke: var(--close-color) !important;
+  color: var(--close-color) !important;
+}
+
+#TabsToolbar .titlebar-close:hover {
+  color: var(--inner-background) !important;
+  stroke: var(--inner-background) !important;
+  background-color: var(--close-color) !important;
+}
+
+/****************************/
+/* MENU BUTTON (3 DASH MENU)*/
+
+/* Move menu button to the left of the back arrow */
+/* Honestly I don't know the intricacies of `order` */
+#nav-bar #PanelUI-button {
+  -moz-box-ordinal-group: 0 !important;
+  order: 0 !important;
+}
+
+toolbar:not([customizing]) > #nav-bar-overflow-button {
+  -moz-box-ordinal-group: 1 !important;
+  order: 1 !important;
+}
+
+toolbar:not([customizing]) > #nav-bar-customization-target {
+  -moz-box-ordinal-group: 2 !important;
+  order: 2 !important;
+}
+
+/* Adjust spacing around menu button to align with other buttons */
+#PanelUI-menu-button {
+  margin-left: 5px !important;
+  padding-right: 0px !important;
+  height: 50px !important;
+}
+
+/***********/
+/* URL BOX */
+
+/* Shrink and center URL bar */
+#nav-bar {
+  margin-right: 115px !important;
+  display: flex;
+  justify-content: center;
+  margin-top: calc(
+    var(--TabsHeight) * -1px - var(--TabsBorder) * 1px
+  ) !important;
+  padding-top: 3px !important;
+  height: 50px !important;
+}
+
+
+#urlbar-container {
+  flex: 1;
+  max-width: 1000px;
+  min-width: 200px;
+  margin: auto !important;
+}
+
+/* Colors */
+#urlbar-background {
+  background-color: var(--dracula-dark-grey) !important;
+}
+
+#urlbar-results > *[selected=""] {
+  background-color: #424242 !important;
+}
+
+/* Center the text in the bar itself */
+#urlbar:not([focused]) #urlbar-input {
+  text-align: center !important;
+}
+
+#urlbar:not([breakout][breakout-extend]) #urlbar-input {
+  text-align: center !important;
+}
+
+/* Round the corners of the bar */
+#urlbar-background,
+#urlbar-input-container {
+  --toolbarbutton-border-radius: calc(var(--urlbar-min-height) / 2);
+}
+
+#urlbar-input-container {
+  --urlbar-icon-border-radius: calc(var(--toolbarbutton-border-radius) - 1px);
+}
+
+/* Adjusts bar using whatever min-width stupid stuff, honestly IDK */
+#urlbar-container {
+  min-width: 0px !important;
+  flex: auto !important;
+}
+
+/* Add ... on left and right side of URL bar */
+#identity-box::after,
+#page-action-buttons::before {
+  position: relative;
+  content: "•••";
+  pointer-events: none;
+  transition: opacity 100ms ease;
+  align-self: center;
+  font-size: 0.75em;
+}
+
+/* Make new dots mostly transparent */
+#identity-box::after,
+#page-action-buttons::before {
+  opacity: 0.2;
+}
+
+/* Rotate left set of dots to be vertical */
+#identity-box::after {
+  transform: rotate(90deg);
+  left: 4px;
+}
+
+/* Rotate right set of dots to be vertical */
+#page-action-buttons::before {
+  transform: rotate(-90deg);
+  right: 4px;
+}
+
+/***********/
+/* TAB BAR */
+
+/* Background of all tabs */
+.tab-background {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: transparent !important;
+}
+
+.browser-toolbar {
+  background-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Changes the size and icon of the tab */
+.tab-icon-image {
+  height: 32px !important;
+  width: 32px !important;
+  border-radius: 10px !important;
+}
+
+/* Background of titlebar to transparent. Titlebar is kinda over the URL bar in this setup? */
+#titlebar {
+  background-color: transparent !important;
+}
+
+/* Removes the New Tab and All Tabs buttons */
+#alltabs-button,
+#tabs-newtab-button {
+  display: none !important;
+}
+
+/* Shrinks the selected tab to be a 37x37px square (for spacing, I think) */
+.tabbrowser-tab[selected="true"] {
+  min-width: 37px !important;
+  max-width: 37px !important;
+  display: none !important;
+}
+
+tab,
+.tabbrowser-tab {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Hides all tabs but the selected tab */
+tab:not([selected="true"]),
+[part="overflow-start-indicator"],
+[part="overflow-end-indicator"],
+#scrollbutton-up,
+#scrollbutton-down,
+#TabsToolbar .titlebar-spacer,
+.tabbrowser-tab[selected="true"] .tab-text,
+.tabbrowser-tab[selected="true"] .tab-close-button,
+.tab-line,
+.tab-throbber {
+  display: none !important;
+}
+
+/* Specific styling for a super skinny screen */
+@media screen and (max-width: 100px) {
+  #TabsToolbar {
+    margin-right: 0 !important;
+  }
+  #nav-bar {
+    margin-left: 0 !important;
+  }
+}
+
+/***************/
+/* NAV TOOLBOX */
+
+/* Styling for the entire top bar */
+#navigator-toolbox {
+  border-radius: 10px;
+  margin: 5px 5px 0px 5px !important;
+  background-color: var(--inner-background) !important;
+  border: 3px solid var(--normal-border) !important;
+  transition: border 0.3s ease !important;
+}
+
+/* Border color on hover */
+#navigator-toolbox:hover {
+  border: 3px solid var(--nav-toolbox-border-hover) !important;
+}
+
+/*******************/
+/* EXTENSIONS MENU */
+
+/* Change "Manage Extensions" row at bottom of extensions menu to "• • •" */
+#unified-extensions-view
+  #unified-extensions-manage-extensions
+  .toolbarbutton-text::before {
+  content: "• • •";
+  font-size: 15px;
+  visibility: visible !important;
+  display: block;
+  text-align: center;
+}
+
+/* Shrinks width of box to only take necessary width */
+#unified-extensions-panel #unified-extensions-view {
+  width: 100% !important;
+}
+
+/* Shrink icon size, and change number of extensions per row */
+#unified-extensions-view {
+  --uei-icon-size: 22px;
+  --firefoxcss-number-of-extensions-in-a-row: 4;
+}
+
+/* Remove text and buttons related to extensions in menu */
+#unified-extensions-view .unified-extensions-item-menu-button.subviewbutton,
+#unified-extensions-view
+  .unified-extensions-item-action-button
+  .unified-extensions-item-contents {
+  display: none !important;
+}
+
+/* Add padding between box edges and extension icons */
+#unified-extensions-view .panel-subview-body {
+  padding: 10px !important;
+}
+
+#unified-extensions-view .unified-extensions-item .unified-extensions-item-icon,
+#unified-extensions-view .unified-extensions-item .toolbarbutton-badge-stack {
+  margin-inline-end: 0px !important;
+}
+
+/* Make the extension icons actually conform to a grid */
+#unified-extensions-view #overflowed-extensions-list,
+#unified-extensions-view #unified-extensions-area,
+#unified-extensions-view .unified-extensions-list {
+  display: grid !important;
+  grid-template-columns: repeat(
+    var(--firefoxcss-number-of-extensions-in-a-row),
+    auto
+  );
+  justify-items: left !important;
+  align-items: left !important;
+}
+
+/*****************/
+/* CTRL + F AREA */
+
+/* Margin, border, hover animation */
+.browserContainer > findbar {
+  border-radius: 10px !important;
+  margin: 0px 5px 5px 0px !important;
+  border: 3px solid var(--normal-border) !important;
+  transition: border 0.3s ease !important;
+}
+
+/* Border color on hover */
+.browserContainer > findbar:hover {
+  border: 3px solid var(--findbar-border-hover) !important;
+}
+
+/* Applies styling to the actual little "Find in page" box */
+.browserContainer > findbar .findbar-textbox {
+  border-radius: 10px !important;
+  text-align: center !important;
+  accent-color: transparent !important;
+  border: 2px solid var(--findbar-border-hover) !important;
+}
+
+/* Border around the box when it's actively focused */
+.browserContainer > findbar .findbar-textbox:focus {
+  border: 2px solid var(--findbar-border-hover) !important;
+}
+
+/*************/
+/* DEV TOOLS */
+
+/* Border color on hover */
+.devtools-toolbox-side-iframe:hover,
+.devtools-toolbox-bottom-iframe:hover {
+  border-color: var(--dracula-green) !important;
+}
+
+/************/
+/* SIDEBERY */
+
+/* Removes the Sidebery header */
+#sidebar-header {
+  display: none !important;
+}
+
+/* Actually adds the margin and border */
+#sidebar-box #sidebar,
+#sidebar-box #webextpanels-window {
+  border-radius: 10px !important;
+  margin: 5px 5px 5px 5px !important;
+  border: 3px solid var(--normal-border);
+  transition: border 0.3s ease;
+}
+
+/* Changes the color of the border on hover */
+#sidebar-box #sidebar:hover,
+#sidebar-box #webextpanels-:hover {
+  border: 3px solid var(--sidebar-border-hover);
+}
+
+/*****************************/
+/* MOSTLY UNDOCUMENTED STUFF */
+
+#nav-bar:not([customizing="true"]):not(.searchButton)
+  > #nav-bar-customization-target
+  > #urlbar-container:not(:hover)
+  > #urlbar:not([focused])
+  > #urlbar-input-container
+  > #page-action-buttons
+  .urlbar-page-action {
+  opacity: 0;
+  transition-delay: 500ms;
+}
+
+#nav-bar:not([customizing="true"]):not(.searchButton)
+  > #nav-bar-customization-target
+  > #urlbar-container:not(:hover)
+  > #urlbar:not([focused])
+  > #urlbar-input-container
+  > #identity-box
+  > #identity-permission-box:not([open]) {
+  opacity: 0;
+  transition-delay: 500ms;
+}
+
+#page-action-buttons .urlbar-page-action,
+#identity-permission-box,
+#notification-popup-box .notification-anchor-icon {
+  transition: opacity 0.2s ease;
+}
+
+#urlbar #identity-icon-box,
+#urlbar #identity-permission-box {
+  opacity: 0 !important;
+  margin-inline-start: calc(-16px - 2 * var(--urlbar-icon-padding));
+  transition: margin-inline-start 100ms linear, opacity 200ms linear;
+}
+
+#urlbar #identity-box.notSecureText #identity-icon-box {
+  margin-inline-start: initial !important;
+  opacity: 1 !important;
+  color: var(--dracula-red) !important;
+}
+
+#urlbar #identity-box.extensionPage #identity-icon-box {
+  margin-inline-start: initial !important;
+  opacity: 1 !important;
+}
+
+#identity-box:hover #identity-icon-box,
+#identity-box:hover #identity-permission-box,
+#identity-box #identity-permission-box[open="true"] {
+  opacity: 1 !important;
+  margin-inline-start: initial !important;
+}
+
+#urlbar-input-container .urlbar-input-box {
+  padding-inline-start: 2px !important;
+}
+
+#identity-box:hover ~ .urlbar-input-box > #urlbar-input {
+  mask-image: linear-gradient(to right, transparent, black 3ch) !important;
+}
+
+#page-action-buttons {
+  padding-inline-start: 8px;
+}
+
+#page-action-buttons .urlbar-page-action {
+  margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding));
+  opacity: 0;
+  transition: margin-inline-end 100ms linear, opacity 200ms linear;
+}
+
+#page-action-buttons:hover > .urlbar-page-action,
+.urlbar-page-action[open],
+.urlbar-page-action[open] ~ .urlbar-page-action {
+  opacity: 1;
+  margin-inline-end: 0px !important;
+}
+
+#identity-box.chromeUI #identity-icon-box {
+  opacity: 1 !important;
+  margin-inline-start: initial;
+}
+
+#identity-box.chromeUI::after,
+#identity-box.chromeUI:hover::after {
+  opacity: 0 !important;
+}
+
+#page-action-buttons:not(:hover)
+  #translations-button[translationsactive="true"]:not([open]) {
+  visibility: collapse !important;
+}
+
+#identity-box[pageproxystate="valid"].notSecureText > .identity-box-button,
+#identity-box[pageproxystate="valid"].extensionPage > .identity-box-button,
+#identity-box[pageproxystate="valid"].chromeUI > .identity-box-button,
+#urlbar-label-box,
+#urlbar-zoom-button {
+  background-color: var(--firefoxcss-item-bg-color) !important;
+}
+
+/* Zoom button color when hovered */
+#urlbar-zoom-button:hover {
+  background-color: var(--firefoxcss-urlbar-zoom-button) !important;
+}
+
+
+#identity-box:hover::after,
+#page-action-buttons:hover::before {
+  opacity: 0.2 !important;
+  transition: opacity 50ms ease;
+  pointer-events: none;
+}
+
+#identity-box[pageproxystate="invalid"]::after,
+#urlbar-input-container[pageproxystate="invalid"]
+  > #page-action-buttons::before {
+  opacity: 0 !important;
+  transition: opacity 50ms ease;
+}
+
+/* Round the corners of the highlighting present when hovering over URL bar icons */
+#urlbar-input-container #identity-box > .identity-box-button,
+#tracking-protection-icon-container,
+#urlbar-go-button,
+#page-action-buttons .urlbar-page-action,
+#notification-popup-box {
+  border-radius: 8px !important;
+}
+
+/* Remove the Tracking Protection icon */
+#urlbar-go-button,
+#tracking-protection-icon-container {
+  display: none !important;
+}
